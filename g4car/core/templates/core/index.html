@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Home - G4car
+{% endblock %}
+
+{% block main %}
+    <h2 class="principal">G4car - Parking</h2>
+    <a href="cadastro_cliente/">Cadastro clientes</a>
+     &nbsp;
+    <a href="listagem_clientes/">Listagem Clientes</a>
+     &nbsp;
+    <a href="cadastro_veiculo/">Cadastro veiculo</a>
+     &nbsp;
+    <a href="listagem_veiculos/">Lista veiculos</a>
+     &nbsp;
+    <br> <br>
+
+    <img src="{% static 'img/fundo.png' %}" width="600">
+{% endblock %}
