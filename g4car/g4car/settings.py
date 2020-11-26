@@ -121,3 +121,6 @@ USE_TZ = True
 # montando a url
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'assets']
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

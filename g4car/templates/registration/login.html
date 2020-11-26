@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login - G4Car
+{% endblock %}
+
+{% block main %}
+    <h3>Logue em sua conta</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- coloca o formulario como paragrafos -->
+        <button type="submit">Log In</button>
+    </form>
+{% endblock %}

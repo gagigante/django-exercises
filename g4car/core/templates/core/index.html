@@ -8,6 +8,7 @@
 
 {% block main %}
     <h2 class="principal">G4car - Parking</h2>
+
     <a href="cadastro_cliente/">Cadastro clientes</a>
      &nbsp;
     <a href="listagem_clientes/">Listagem Clientes</a>
@@ -16,7 +17,19 @@
      &nbsp;
     <a href="listagem_veiculos/">Lista veiculos</a>
      &nbsp;
+    &nbsp;
+
+    {% if user.get_username %}
+        (usuario: {{ user.get_username }} |
+        <a href="accounts/logout/">sair</a> )
+    {% else %}
+        (user not found |
+        <a href="accounts/login/">login</a> |
+        <a href="registrar/">registrar</a>
+        )
+    {% endif %}
+
     <br> <br>
 
-    <img src="{% static 'img/fundo.png' %}" width="600">
+    <img src="{% static 'img/fundo.png' %}" width="700">
 {% endblock %}
