@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Lista clientes
 {% endblock %}
 
 {% block main %}
-    <h1>Listagem de clientes</h1>
+    <h1>Lista de clientes:</h1>
+
+    {% for cliente in clientes %}
+
+        Nome: {{ cliente.nome }} <br>
+        Endereço: {{ cliente.endereco }} <br>
+        Complemento: {{ cliente.complemento }}<br>
+        Bairro: {{ cliente.bairro }}<br>
+        Cidade: {{ cliente.cidade }}<br>
+        CEP: {{ cliente.cep }}<br>
+        Telefone: {{ cliente.telefone }}<br>
+        Email: {{ cliente.email }}<br>
+        {% if cliente.foto %}
+            <img src="{{ cliente.foto.url }}" width="100" alt="foto - cliente">
+        {% else %}
+            <img src="{% static 'img/generic.png' %}" width="100" alt="foto - generica">
+        {% endif %}
+        <br> <br>
+        -----------------------------------------------
+        <br>
+
+    {% endfor %}
+
 {% endblock %}

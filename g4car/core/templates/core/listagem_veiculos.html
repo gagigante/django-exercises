@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Listagem veiculos
 {% endblock %}
 
 {% block main %}
-    <h1>Listagem de veiculos</h1>
+     <h1>Lista de Veiculos:</h1>
+
+    {% for veiculo in veiculos %}
+        Fabricante: {{ veiculo.fabricante }} <br>
+        Modelo: {{ veiculo.modelo }} <br>
+        Ano: {{ veiculo.ano }} <br>
+        Cor: {{ veiculo.cor }} <br>
+        Placa: {{ veiculo.placa }} <br>
+        Dono: {{ veiculo.id_cliente }} <br>
+
+        {% if veiculo.foto %}
+            <img src="{{ veiculo.foto.url }}" width="150" alt="foto - veiculo">
+        {% else %}
+            <img src="{% static 'img/genericCar.jpg' %}" width="150" alt="foto - generica">
+        {% endif %}
+        <br> <br>
+        -----------------------------------------------
+        <br>
+
+    {% endfor %}
 {% endblock %}

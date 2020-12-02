@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-# Create your views here.
-
+from core.models import Cliente, Veiculo
 
 def home(request):
     return render(request, 'core/index.html')
@@ -23,7 +22,9 @@ def cadastro_cliente(request):
 
 @login_required
 def listagem_clientes(request):
-    return render(request, 'core/listagem_clientes.html')
+    clientes = Cliente.objects.all()
+    contexto = {'clientes': clientes}
+    return render(request, 'core/listagem_clientes.html', contexto)
 
 
 @login_required
@@ -32,4 +33,6 @@ def cadastro_veiculo(request):
 
 @login_required
 def listagem_veiculos(request):
-    return render(request, 'core/listagem_veiculos.html')
+    veiculos = Veiculo.objects.all()
+    contexto = {'veiculos': veiculos}
+    return render(request, 'core/listagem_veiculos.html', contexto)
