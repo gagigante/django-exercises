@@ -6,14 +6,32 @@
 
 {% block main %}
      <h1>Lista de Veiculos:</h1>
+    <br>
 
     {% for veiculo in veiculos %}
+
+        Modelo: {{ veiculo.modelo }}
+        <a href="{% url 'url_atualiza_veiculo' veiculo.id %}">Editar</a> |
+        <a href="{% url 'url_exclui_veiculo' veiculo.id %}">Excluir</a> <br>
         Fabricante: {{ veiculo.fabricante }} <br>
-        Modelo: {{ veiculo.modelo }} <br>
-        Ano: {{ veiculo.ano }} <br>
-        Cor: {{ veiculo.cor }} <br>
+
+        {% if veiculo.ano %}
+            Ano: {{ veiculo.ano }} <br>
+        {% else %}
+            Ano: N informado. <br>
+        {% endif %}
+
+        {% if veiculo.cor %}
+            Cor: {{ veiculo.cor }} <br>
+        {% else %}
+            Cor: N informado. <br>
+        {% endif %}
+
+
         Placa: {{ veiculo.placa }} <br>
         Dono: {{ veiculo.id_cliente }} <br>
+
+        <br>
 
         {% if veiculo.foto %}
             <img src="{{ veiculo.foto.url }}" width="150" alt="foto - veiculo">

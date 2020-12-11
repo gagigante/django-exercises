@@ -9,7 +9,9 @@
 
     {% for cliente in clientes %}
 
-        Nome: {{ cliente.nome }} <br>
+        Nome: {{ cliente.nome }} &nbsp; | &nbsp;
+        <a href="{% url 'url_atualiza_cliente' cliente.id %}">Editar</a> |
+        <a href="{% url 'url_exclui_cliente' cliente.id %}">Excluir</a> <br>
         Endereço: {{ cliente.endereco }} <br>
         Complemento: {{ cliente.complemento }}<br>
         Bairro: {{ cliente.bairro }}<br>
@@ -18,9 +20,17 @@
         Telefone: {{ cliente.telefone }}<br>
         Email: {{ cliente.email }}<br>
         {% if cliente.foto %}
-            <img src="{{ cliente.foto.url }}" width="100" alt="foto - cliente">
+            <img
+                src="{{ cliente.foto.url }}"
+                width="100"
+                alt="foto - cliente"
+            >
         {% else %}
-            <img src="{% static 'img/generic.png' %}" width="100" alt="foto - generica">
+             <img
+                src="{% static 'img/generic.png' %}"
+                width="100"
+                alt="foto - generica"
+            >
         {% endif %}
         <br> <br>
         -----------------------------------------------

@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core.views import home, cadastro_cliente, listagem_clientes, \
-                cadastro_veiculo, listagem_veiculos, Registrar
+    cadastro_veiculo, listagem_veiculos, Registrar, \
+    atualiza_cliente, atualiza_veiculo, \
+    exclui_cliente, exclui_veiculo
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +31,10 @@ urlpatterns = [
     path('listagem_clientes/', listagem_clientes, name='url_listagem_clientes'),
     path('cadastro_veiculo/', cadastro_veiculo, name='url_cadastro_veiculo'),
     path('listagem_veiculos/', listagem_veiculos, name='url_listagem_veiculos'),
+    path('atualiza_cliente/<int:id>', atualiza_cliente, name='url_atualiza_cliente'),
+    path('atualiza_veiculo/<int:id>', atualiza_veiculo, name='url_atualiza_veiculo'),
+    path('exclui_cliente/<int:id>', exclui_cliente, name='url_exclui_cliente'),
+    path('exclui_veiculo/<int:id>', exclui_veiculo, name='url_exclui_veiculo'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

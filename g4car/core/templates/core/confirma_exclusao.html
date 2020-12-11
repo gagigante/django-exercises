@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Excluir?
+{% endblock %}
+
+{% block main %}
+    <h1>Deseja realmente excluir o cadastro de {{ acao }}?</h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim</button> &ensp;
+        <button type="button" onclick="location.href={{ redirect }}">Nao</button>
+    </form>
+{% endblock %}
