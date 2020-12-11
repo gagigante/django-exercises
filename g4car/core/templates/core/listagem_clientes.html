@@ -7,11 +7,17 @@
 {% block main %}
     <h1>Lista de clientes:</h1>
 
+    <form method="post">
+        {% csrf_token %}
+    <input type="text" name="nome" > &nbsp; <button type="submit">Pesquisar</button>
+    </form>
+    --------------------------------------------------------------- <br>
+
     {% for cliente in clientes %}
 
         Nome: {{ cliente.nome }} &nbsp; | &nbsp;
         <a href="{% url 'url_atualiza_cliente' cliente.id %}">Editar</a> |
-        <a href="{% url 'url_exclui_cliente' cliente.id %}">Excluir</a> <br>
+        <a href="{% url 'url_exclui_cliente' cliente.id %}">Excluir</a> <br
         Endereço: {{ cliente.endereco }} <br>
         Complemento: {{ cliente.complemento }}<br>
         Bairro: {{ cliente.bairro }}<br>
@@ -26,7 +32,7 @@
                 alt="foto - cliente"
             >
         {% else %}
-             <img
+            <img
                 src="{% static 'img/generic.png' %}"
                 width="100"
                 alt="foto - generica"
