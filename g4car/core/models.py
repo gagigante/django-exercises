@@ -1,3 +1,4 @@
+from math import ceil, floor, trunc
 from django.db import models
 
 # Create your models here.
@@ -40,8 +41,7 @@ class Parametro(models.Model):
     valor = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
-        return f'{self.descricao}\n'
-        #       f'Valor - {self.valor}'
+        return f'{self.descricao} - R${self.valor}'
 
     class Meta:
         verbose_name_plural = 'Parâmetros'
@@ -60,6 +60,22 @@ class Movimento(models.Model):
 
     class Meta:
         verbose_name_plural = 'Movimentos'
+
+    # regra de negocio para calcular o total baseado no checkout
+    def calcula_total(self):
+        if self.data_saida:
+            if self.data_saida < self.data_entrada:
+                return 'erro'
+            horas = (self.data_saida - self.data_entrada).total_seconds() / 3600
+            minutos = (horas * 60) - (trunc(horas) * 60)
+            if minutos > 15:
+                horas = ceil(horas)
+            else:
+                horas = floor(horas)
+            # obj = Parametro.objects.get(id=self.valor_hora) // caso for um parametro opcional
+            self.total = horas * self.valor_hora.valor  # ai substitui por obj.valor
+            return self.total
+        return 0.0
 
 
 class Mensalista(models.Model):
